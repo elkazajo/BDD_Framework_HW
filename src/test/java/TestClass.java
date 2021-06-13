@@ -61,7 +61,7 @@ public class TestClass extends InstanceCreator {
                 .openSentToMySelf()
                 .dragLetterToNewFolder()
                 .deleteFolder();
-        Assert.assertFalse(folderPage.isFolderDeleted());
+        Assert.assertTrue(folderPage.isFolderDeleted());
     }
 
     @Test(dependsOnMethods = {"createAndDeleteFolderAssert"})
