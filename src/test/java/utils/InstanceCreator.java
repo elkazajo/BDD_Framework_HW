@@ -1,25 +1,29 @@
+package utils;
+
+import business_objects.User;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import pages.*;
-import utils.WebDriverCreator;
 
 public class InstanceCreator {
-    WebDriver driver;
-    Actions actions;
-    LoginPage loginPage;
-    MainPage mainPage;
-    LetterPage letterPage;
-    DraftsPage draftsPage;
-    DraftsLetterPage draftsLetterPage;
-    LogoutPage logoutPage;
-    FolderPage folderPage;
+    protected WebDriver driver;
+    protected Actions actions;
+    protected User user;
+    protected LoginPage loginPage;
+    protected MainPage mainPage;
+    protected LetterPage letterPage;
+    protected DraftsPage draftsPage;
+    protected DraftsLetterPage draftsLetterPage;
+    protected LogoutPage logoutPage;
+    protected FolderPage folderPage;
 
     @BeforeSuite
     public void instanceCreator() {
         driver = new WebDriverCreator().setDriver();
         actions = new Actions(driver);
+        user = new User();
         loginPage = new LoginPage(driver);
         mainPage = new MainPage(driver);
         letterPage = new LetterPage(driver);

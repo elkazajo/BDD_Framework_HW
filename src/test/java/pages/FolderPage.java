@@ -4,25 +4,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.time.Duration;
-
 public class FolderPage extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"new-folder-btn__button-wrapper\"]")
-    WebElement newFolder;
+    WebElement newFolderCreator;
 
     @FindBy(xpath = "//input[@data-test-id=\"name\"]")
-    WebElement newFolderName;
+    WebElement newFolderNamingForm;
 
     @FindBy(xpath = "//button[@data-test-id=\"submit\"]")
-    WebElement createNewFolder;
+    WebElement createNewFolderButton;
 
     @FindBy(xpath = "//div[@class=\"nav__folder-name__txt\" and text()=\"Test Folder\"]")
-    WebElement firstNewlyCreatedFolder;
+    WebElement createdFolder;
 
     @FindBy(xpath = "//a[@href=\"/tomyself/\"]")
     WebElement sentToMySelf;
 
-    @FindBy(xpath = "//div[@class=\"llct__content llct__content_unread\"]")
+    @FindBy(xpath = "//a[@tabindex=\"-1\"][1]")
     WebElement letter;
 
     @FindBy(xpath = "//div[@class=\"layer__submit-button\"]")
@@ -36,20 +34,20 @@ public class FolderPage extends AbstractPage {
     }
 
     public FolderPage clickToCreateNewFolder() {
-        waitForElementPresence(newFolder);
-        actions.click(newFolder).build().perform();
+        waitForElementPresence(newFolderCreator);
+        actions.click(newFolderCreator).build().perform();
         return this;
     }
 
     public FolderPage nameNewFolder(String name) {
-        waitForElementPresence(newFolderName);
-        actions.click(newFolderName).build().perform();
+        waitForElementPresence(newFolderNamingForm);
+        actions.click(newFolderNamingForm).build().perform();
         actions.sendKeys(name).build().perform();
         return this;
     }
 
     public FolderPage createNewFolder() {
-        actions.click(createNewFolder).build().perform();
+        actions.click(createNewFolderButton).build().perform();
         return this;
     }
 
@@ -59,14 +57,17 @@ public class FolderPage extends AbstractPage {
     }
 
     public FolderPage dragLetterToNewFolder() {
+        int x = 52;
+        int y = 330;
         waitForElementPresence(letter);
         actions.click(letter).build().perform();
-        actions.dragAndDrop(letter, firstNewlyCreatedFolder);
+        actions.dragAndDropBy(letter,x, y).build().perform();
         return this;
     }
 
     public FolderPage deleteFolder() {
-        actions.contextClick(firstNewlyCreatedFolder).perform();
+        waitForElementPresence(createdFolder);
+        actions.contextClick(createdFolder).perform();
         waitForElementPresence(deleteAtContext);
         deleteAtContext.click();
         waitForElementPresence(folderDeleteButton);
@@ -75,6 +76,6 @@ public class FolderPage extends AbstractPage {
     }
 
     public boolean isFolderDeleted() {
-        return isElementPresent(firstNewlyCreatedFolder);
+        return isElementPresent(createdFolder);
     }
 }

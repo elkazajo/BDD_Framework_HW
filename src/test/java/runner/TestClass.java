@@ -1,20 +1,16 @@
+package runner;
+
+import business_objects.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utils.InstanceCreator;
 
 public class TestClass extends InstanceCreator {
-    String URL = "https://mail.ru/";
-    String userName = "selenium.tester";
-    String userPassword = "PRARppro3*u3";
-    String addressee = "selenium.tester@mail.ru";
-    String subject = "Hello";
-    String bodyText = "Hello World!";
-    String folderName = "Test Folder";
-
     @Test
     public void loginSuccessAssert() {
-        loginPage.start(URL).inputUserName(userName)
+        loginPage.start(user.getMailUrl()).inputUserName(user.getUserName())
                 .clickLoginButton()
-                .inputPassword(userPassword)
+                .inputPassword(user.getUserPassword())
                 .enterPasswordButton();
         Assert.assertTrue(loginPage.verifyLoginSuccess());
     }
@@ -27,9 +23,9 @@ public class TestClass extends InstanceCreator {
 
     @Test(dependsOnMethods = {"clickToComposeLetterAssert"})
     public void letterCreationAssert() {
-        letterPage.enterAddressee(addressee)
-                .enterSubject(subject)
-                .enterBodyText(bodyText)
+        letterPage.enterAddressee(user.getMailAddress())
+                .enterSubject(user.getMailSubject())
+                .enterBodyText(user.getMailText())
                 .saveToDrafts()
                 .closeLetterPage();
         Assert.assertTrue(letterPage.isStillOpen());
@@ -44,7 +40,7 @@ public class TestClass extends InstanceCreator {
     @Test(dependsOnMethods = {"letterIsInDraftsAssert"})
     public void addresseeAssert() {
         draftsLetterPage.openLastSaved();
-        Assert.assertEquals(draftsLetterPage.verifyAddressee(), addressee);
+        Assert.assertEquals(draftsLetterPage.verifyAddressee(), user.getMailAddress());
     }
 
     @Test(dependsOnMethods = {"addresseeAssert"})
@@ -56,7 +52,7 @@ public class TestClass extends InstanceCreator {
     @Test (dependsOnMethods = {"mailSentAssert"})
     public void createAndDeleteFolderAssert() {
         folderPage.clickToCreateNewFolder()
-                .nameNewFolder(folderName)
+                .nameNewFolder(user.getFolderName())
                 .createNewFolder()
                 .openSentToMySelf()
                 .dragLetterToNewFolder()
