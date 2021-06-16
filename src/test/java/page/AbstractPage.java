@@ -1,8 +1,7 @@
-package pages;
+package page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,14 +9,17 @@ import java.time.Duration;
 
 public abstract class AbstractPage {
     private final WebDriver driver;
-    public Actions actions;
     private static final long TIMEOUT_IN_SECONDS = 10;
     private static final long MILLIS = 500;
+    private static final String MAIL_URL = "https://mail.ru/";
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
-        actions = new Actions(driver);
         PageFactory.initElements(this.driver, this);
+    }
+
+    public WebDriver getDriver() {
+        return driver;
     }
 
     public boolean isElementPresent(WebElement element) {
@@ -28,8 +30,9 @@ public abstract class AbstractPage {
         new WebDriverWait(driver, TIMEOUT_IN_SECONDS).pollingEvery(Duration.ofMillis(MILLIS)).until(ExpectedConditions.visibilityOfAllElements(element));
     }
 
-    protected void openPage(String url) {
-        driver.get(url);
+    protected AbstractPage openPage() {
+        driver.get(MAIL_URL);
         driver.manage().window().maximize();
+        return this;
     }
 }

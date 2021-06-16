@@ -1,7 +1,8 @@
-package pages;
+package page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
@@ -19,6 +20,8 @@ public class LoginPage extends AbstractPage {
 
     @FindBy(xpath = "//a[@href=\"/compose/\"]")
     WebElement composeLetter;
+
+    Actions actions = new Actions(getDriver());
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -52,9 +55,8 @@ public class LoginPage extends AbstractPage {
         return isElementPresent(composeLetter);
     }
 
-    public LoginPage start(String url) {
-        openPage(url);
-        return this;
+    @Override
+    public LoginPage openPage() {
+        return (LoginPage) super.openPage();
     }
-
 }

@@ -1,8 +1,10 @@
-package pages;
+package page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import utils.WebDriverCreator;
 
 public class MainPage extends AbstractPage {
     @FindBy(xpath = "//a[@href=\"/compose/\"]")
@@ -14,6 +16,8 @@ public class MainPage extends AbstractPage {
     public MainPage(WebDriver driver) {
         super(driver);
     }
+
+    Actions actions = new Actions(getDriver());
 
     public MainPage clickToComposeLetter() {
         waitForElementPresence(composeLetter);

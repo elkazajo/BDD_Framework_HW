@@ -1,7 +1,8 @@
-package pages;
+package page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class FolderPage extends AbstractPage {
@@ -28,6 +29,8 @@ public class FolderPage extends AbstractPage {
 
     @FindBy(xpath = "//span[text()=\"Удалить папку\"]")
     WebElement deleteAtContext;
+
+    Actions actions = new Actions(getDriver());
 
     public FolderPage(WebDriver driver) {
         super(driver);

@@ -1,7 +1,8 @@
-package pages;
+package page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class DraftsLetterPage extends AbstractPage{
@@ -18,10 +19,11 @@ public class DraftsLetterPage extends AbstractPage{
     @FindBy(xpath = "//span[@tabindex=\"1000\"]")
     WebElement closeButtonForLetterSentWindow;
 
+    Actions actions = new Actions(getDriver());
+
     public DraftsLetterPage(WebDriver driver) {
         super(driver);
     }
-
 
     public DraftsLetterPage openLastSaved() {
         waitForElementPresence(lastSaved);

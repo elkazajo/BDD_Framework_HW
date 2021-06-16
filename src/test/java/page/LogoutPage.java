@@ -1,7 +1,8 @@
-package pages;
+package page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class LogoutPage extends AbstractPage {
@@ -12,11 +13,14 @@ public class LogoutPage extends AbstractPage {
     @FindBy(xpath = "//input[@name=\"login\"]")
     WebElement loginInputForm;
 
+    Actions actions = new Actions(getDriver());
+
     public LogoutPage(WebDriver driver) {
         super(driver);
     }
 
     public LogoutPage pressDropdown() {
+
         actions.click(dropdown).build().perform();
         return this;
     }

@@ -3,7 +3,7 @@
 <suite name="SeleniumHW">
     <test verbose="2" preserve-order="true" name="DesignPatterns">
         <classes>
-            <class name="runner.TestClass"/>
+            <class name="test.TestClass"/>
         </classes>
     </test>
 </suite>

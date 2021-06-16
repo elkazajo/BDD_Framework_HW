@@ -1,16 +1,55 @@
-package runner;
+package test;
 
-import business_objects.User;
+import business_object.Mail;
+import business_object.User;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import utils.InstanceCreator;
+import page.*;
+import utils.WebDriverCreator;
 
-public class TestClass extends InstanceCreator {
+public class TestClass {
+
+    private static final String FOLDER_NAME = "Test Folder";
+    private static final String MAIL_ADDRESS = "selenium.tester@mail.ru";
+
+    private WebDriver driver;
+    private User user;
+    private Mail mail;
+    private LoginPage loginPage;
+    private MainPage mainPage;
+    private LetterPage letterPage;
+    private DraftsPage draftsPage;
+    private DraftsLetterPage draftsLetterPage;
+    private LogoutPage logoutPage;
+    private FolderPage folderPage;
+
+    @BeforeSuite
+    public void instanceCreator() {
+        driver = new WebDriverCreator().setDriver();
+        user = new User();
+        mail = new Mail();
+        loginPage = new LoginPage(driver);
+        mainPage = new MainPage(driver);
+        letterPage = new LetterPage(driver);
+        draftsPage = new DraftsPage(driver);
+        draftsLetterPage = new DraftsLetterPage(driver);
+        folderPage = new FolderPage(driver);
+        logoutPage = new LogoutPage(driver);
+    }
+
+    @AfterSuite
+    public void tearDown() {
+        driver.quit();
+    }
+
     @Test
     public void loginSuccessAssert() {
-        loginPage.start(user.getMailUrl()).inputUserName(user.getUserName())
+        loginPage.openPage().inputUserName(user.getName())
                 .clickLoginButton()
-                .inputPassword(user.getUserPassword())
+                .inputPassword(user.getPassword())
                 .enterPasswordButton();
         Assert.assertTrue(loginPage.verifyLoginSuccess());
     }
@@ -23,9 +62,9 @@ public class TestClass extends InstanceCreator {
 
     @Test(dependsOnMethods = {"clickToComposeLetterAssert"})
     public void letterCreationAssert() {
-        letterPage.enterAddressee(user.getMailAddress())
-                .enterSubject(user.getMailSubject())
-                .enterBodyText(user.getMailText())
+        letterPage.enterAddressee(MAIL_ADDRESS)
+                .enterSubject(mail.getLetterSubject())
+                .enterBodyText(mail.getLetterText())
                 .saveToDrafts()
                 .closeLetterPage();
         Assert.assertTrue(letterPage.isStillOpen());
@@ -40,7 +79,7 @@ public class TestClass extends InstanceCreator {
     @Test(dependsOnMethods = {"letterIsInDraftsAssert"})
     public void addresseeAssert() {
         draftsLetterPage.openLastSaved();
-        Assert.assertEquals(draftsLetterPage.verifyAddressee(), user.getMailAddress());
+        Assert.assertEquals(draftsLetterPage.verifyAddressee(), MAIL_ADDRESS);
     }
 
     @Test(dependsOnMethods = {"addresseeAssert"})
@@ -52,7 +91,7 @@ public class TestClass extends InstanceCreator {
     @Test (dependsOnMethods = {"mailSentAssert"})
     public void createAndDeleteFolderAssert() {
         folderPage.clickToCreateNewFolder()
-                .nameNewFolder(user.getFolderName())
+                .nameNewFolder(FOLDER_NAME)
                 .createNewFolder()
                 .openSentToMySelf()
                 .dragLetterToNewFolder()
