@@ -5,7 +5,7 @@ import business_object.User;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.*;
 import utils.WebDriverCreator;
@@ -15,7 +15,7 @@ public class TestClass {
     private static final String FOLDER_NAME = "Test Folder";
     private static final String MAIL_ADDRESS = "selenium.tester@mail.ru";
 
-    private WebDriver driver;
+    WebDriver driver;
     private User user;
     private Mail mail;
     private LoginPage loginPage;
@@ -26,9 +26,9 @@ public class TestClass {
     private LogoutPage logoutPage;
     private FolderPage folderPage;
 
-    @BeforeSuite
-    public void instanceCreator() {
-        driver = new WebDriverCreator().setDriver();
+    @BeforeClass
+    public void setUp() {
+        driver = WebDriverCreator.getDriver();
         user = new User();
         mail = new Mail();
         loginPage = new LoginPage(driver);

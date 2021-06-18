@@ -11,7 +11,6 @@ public abstract class AbstractPage {
     private final WebDriver driver;
     private static final long TIMEOUT_IN_SECONDS = 10;
     private static final long MILLIS = 500;
-    private static final String MAIL_URL = "https://mail.ru/";
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -28,11 +27,5 @@ public abstract class AbstractPage {
 
     public void waitForElementPresence(WebElement element) {
         new WebDriverWait(driver, TIMEOUT_IN_SECONDS).pollingEvery(Duration.ofMillis(MILLIS)).until(ExpectedConditions.visibilityOfAllElements(element));
-    }
-
-    protected AbstractPage openPage() {
-        driver.get(MAIL_URL);
-        driver.manage().window().maximize();
-        return this;
     }
 }

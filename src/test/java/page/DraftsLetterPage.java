@@ -14,7 +14,7 @@ public class DraftsLetterPage extends AbstractPage{
     WebElement addresseeCheck;
     @FindBy(xpath = "//a[@href=\"/sent/\"]")
     WebElement sentButton;
-    @FindBy(xpath = "//span[@class=\"ll-crpt\"]")
+    @FindBy(xpath = "//a[@tabindex=\"-1\"][1]")
     WebElement mailSent;
     @FindBy(xpath = "//span[@tabindex=\"1000\"]")
     WebElement closeButtonForLetterSentWindow;

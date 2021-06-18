@@ -6,6 +6,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends AbstractPage {
+
+    private static final String MAIL_URL = "https://mail.ru/";
+
     @FindBy(xpath = "//input[@name=\"login\"]")
     WebElement loginInputForm;
 
@@ -55,8 +58,8 @@ public class LoginPage extends AbstractPage {
         return isElementPresent(composeLetter);
     }
 
-    @Override
     public LoginPage openPage() {
-        return (LoginPage) super.openPage();
+        getDriver().get(MAIL_URL);
+        return this;
     }
 }

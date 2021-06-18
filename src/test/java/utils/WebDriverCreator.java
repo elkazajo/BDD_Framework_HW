@@ -4,11 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebDriverCreator {
-    protected WebDriver driver;
+    //Singleton pattern
+    private static WebDriver driver;
 
-    public WebDriver setDriver() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-        driver = new ChromeDriver();
+    private WebDriverCreator() {
+
+    }
+
+    public static WebDriver getDriver() {
+        if(driver == null) {
+            DriverFactory.getChromeDriver();
+        }
         return driver;
     }
 }
