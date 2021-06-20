@@ -60,6 +60,7 @@ public class LoginAbstractPage extends AbstractPage {
 
     public LoginAbstractPage openPage() {
         getDriver().get(MAIL_URL);
+        getDriver().manage().window().maximize();
         return this;
     }
 }
