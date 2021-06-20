@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class DraftsLetterPage extends AbstractPage{
+public class DraftsLetterAbstractPage extends AbstractPage {
     @FindBy(xpath = "//span[@tabindex=\"570\"]")
     WebElement sendMail;
     @FindBy(xpath = "//span[@title=\"selenium.tester@mail.ru\"][1]")
@@ -21,11 +21,11 @@ public class DraftsLetterPage extends AbstractPage{
 
     Actions actions = new Actions(getDriver());
 
-    public DraftsLetterPage(WebDriver driver) {
+    public DraftsLetterAbstractPage(WebDriver driver) {
         super(driver);
     }
 
-    public DraftsLetterPage openLastSaved() {
+    public DraftsLetterAbstractPage openLastSaved() {
         waitForElementPresence(lastSaved);
         lastSaved.click();
         return this;
@@ -36,12 +36,12 @@ public class DraftsLetterPage extends AbstractPage{
         return addresseeCheck.getText();
     }
 
-    public DraftsLetterPage sendMail() {
+    public DraftsLetterAbstractPage sendMail() {
         sendMail.click();
         return this;
     }
 
-    public DraftsLetterPage closeLetterSentWindow() {
+    public DraftsLetterAbstractPage closeLetterSentWindow() {
         waitForElementPresence(closeButtonForLetterSentWindow);
         actions.click(closeButtonForLetterSentWindow).build().perform();
         return this;

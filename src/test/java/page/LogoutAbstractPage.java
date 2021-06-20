@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class LogoutPage extends AbstractPage {
+public class LogoutAbstractPage extends AbstractPage {
     @FindBy(xpath = "//div[@aria-label=\"selenium.tester@mail.ru\"]")
     WebElement dropdown;
     @FindBy(xpath = "//a[@href=\"//auth.mail.ru/cgi-bin/logout?next=1&lang=ru_RU&page=https%3A%2F%2Fmail.ru%2F%3Ffrom%3Dlogout\"]")
@@ -15,17 +15,17 @@ public class LogoutPage extends AbstractPage {
 
     Actions actions = new Actions(getDriver());
 
-    public LogoutPage(WebDriver driver) {
+    public LogoutAbstractPage(WebDriver driver) {
         super(driver);
     }
 
-    public LogoutPage pressDropdown() {
+    public LogoutAbstractPage pressDropdown() {
 
         actions.click(dropdown).build().perform();
         return this;
     }
 
-    public LogoutPage pressLogout() {
+    public LogoutAbstractPage pressLogout() {
         waitForElementPresence(logoutButton);
         actions.click(logoutButton).build().perform();
         return this;

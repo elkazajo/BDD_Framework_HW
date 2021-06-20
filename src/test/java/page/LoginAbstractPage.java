@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends AbstractPage {
+public class LoginAbstractPage extends AbstractPage {
 
     private static final String MAIL_URL = "https://mail.ru/";
 
@@ -26,29 +26,29 @@ public class LoginPage extends AbstractPage {
 
     Actions actions = new Actions(getDriver());
 
-    public LoginPage(WebDriver driver) {
+    public LoginAbstractPage(WebDriver driver) {
         super(driver);
     }
 
-    public LoginPage inputUserName(String userName) {
+    public LoginAbstractPage inputUserName(String userName) {
         actions.click(loginInputForm).build().perform();
         actions.sendKeys(userName).build().perform();
         return this;
     }
 
-    public LoginPage enterPasswordButton() {
+    public LoginAbstractPage enterPasswordButton() {
         actions.click(enterButton).build().perform();
         return this;
     }
 
-    public LoginPage inputPassword(String userPassword) {
+    public LoginAbstractPage inputPassword(String userPassword) {
         waitForElementPresence(passwordInputForm);
         actions.click(passwordInputForm).build().perform();
         actions.sendKeys(userPassword).build().perform();
         return this;
     }
 
-    public LoginPage clickLoginButton() {
+    public LoginAbstractPage clickLoginButton() {
         actions.click(loginButton).build().perform();
         return this;
     }
@@ -58,7 +58,7 @@ public class LoginPage extends AbstractPage {
         return isElementPresent(composeLetter);
     }
 
-    public LoginPage openPage() {
+    public LoginAbstractPage openPage() {
         getDriver().get(MAIL_URL);
         return this;
     }

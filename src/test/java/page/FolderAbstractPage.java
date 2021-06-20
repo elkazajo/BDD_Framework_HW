@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class FolderPage extends AbstractPage {
+public class FolderAbstractPage extends AbstractPage {
     @FindBy(xpath = "//div[@class=\"new-folder-btn__button-wrapper\"]")
     WebElement newFolderCreator;
 
@@ -32,34 +32,34 @@ public class FolderPage extends AbstractPage {
 
     Actions actions = new Actions(getDriver());
 
-    public FolderPage(WebDriver driver) {
+    public FolderAbstractPage(WebDriver driver) {
         super(driver);
     }
 
-    public FolderPage clickToCreateNewFolder() {
+    public FolderAbstractPage clickToCreateNewFolder() {
         waitForElementPresence(newFolderCreator);
         actions.click(newFolderCreator).build().perform();
         return this;
     }
 
-    public FolderPage nameNewFolder(String name) {
+    public FolderAbstractPage nameNewFolder(String name) {
         waitForElementPresence(newFolderNamingForm);
         actions.click(newFolderNamingForm).build().perform();
         actions.sendKeys(name).build().perform();
         return this;
     }
 
-    public FolderPage createNewFolder() {
+    public FolderAbstractPage createNewFolder() {
         actions.click(createNewFolderButton).build().perform();
         return this;
     }
 
-    public FolderPage openSentToMySelf() {
+    public FolderAbstractPage openSentToMySelf() {
         actions.click(sentToMySelf).build().perform();
         return this;
     }
 
-    public FolderPage dragLetterToNewFolder() {
+    public FolderAbstractPage dragLetterToNewFolder() {
         int x = 52;
         int y = 330;
         waitForElementPresence(letter);
@@ -68,7 +68,7 @@ public class FolderPage extends AbstractPage {
         return this;
     }
 
-    public FolderPage deleteFolder() {
+    public FolderAbstractPage deleteFolder() {
         waitForElementPresence(createdFolder);
         actions.contextClick(createdFolder).perform();
         waitForElementPresence(deleteAtContext);
