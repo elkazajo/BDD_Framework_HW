@@ -8,7 +8,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import page.*;
-import singleton_pattern.WebDriverCreator;
+import utils.WebDriverCreator;
 
 public class TestClass {
 
@@ -18,26 +18,26 @@ public class TestClass {
     WebDriver driver;
     private User user;
     private Mail mail;
-    private LoginAbstractPage loginPage;
-    private MainAbstractPage mainPage;
-    private LetterAbstractPage letterPage;
-    private DraftsAbstractPage draftsPage;
-    private DraftsLetterAbstractPage draftsLetterPage;
-    private LogoutAbstractPage logoutPage;
-    private FolderAbstractPage folderPage;
+    private LoginPage loginPage;
+    private MainPage mainPage;
+    private LetterPage letterPage;
+    private DraftsPage draftsPage;
+    private DraftsLetterPage draftsLetterPage;
+    private LogoutPage logoutPage;
+    private FolderPage folderPage;
 
     @BeforeClass
     public void setUp() {
         driver = WebDriverCreator.getDriver();
         user = new User();
         mail = new Mail();
-        loginPage = new LoginAbstractPage(driver);
-        mainPage = new MainAbstractPage(driver);
-        letterPage = new LetterAbstractPage(driver);
-        draftsPage = new DraftsAbstractPage(driver);
-        draftsLetterPage = new DraftsLetterAbstractPage(driver);
-        folderPage = new FolderAbstractPage(driver);
-        logoutPage = new LogoutAbstractPage(driver);
+        loginPage = new LoginPage(driver);
+        mainPage = new MainPage(driver);
+        letterPage = new LetterPage(driver);
+        draftsPage = new DraftsPage(driver);
+        draftsLetterPage = new DraftsLetterPage(driver);
+        folderPage = new FolderPage(driver);
+        logoutPage = new LogoutPage(driver);
     }
 
     @AfterSuite

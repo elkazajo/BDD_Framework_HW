@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class FolderAbstractPage extends AbstractPage {
+public class FolderPage extends Page {
     @FindBy(xpath = "//div[@class=\"new-folder-btn__button-wrapper\"]")
     WebElement newFolderCreator;
 
@@ -32,34 +32,34 @@ public class FolderAbstractPage extends AbstractPage {
 
     Actions actions = new Actions(getDriver());
 
-    public FolderAbstractPage(WebDriver driver) {
+    public FolderPage(WebDriver driver) {
         super(driver);
     }
 
-    public FolderAbstractPage clickToCreateNewFolder() {
+    public FolderPage clickToCreateNewFolder() {
         waitForElementPresence(newFolderCreator);
         actions.click(newFolderCreator).build().perform();
         return this;
     }
 
-    public FolderAbstractPage nameNewFolder(String name) {
+    public FolderPage nameNewFolder(String name) {
         waitForElementPresence(newFolderNamingForm);
         actions.click(newFolderNamingForm).build().perform();
         actions.sendKeys(name).build().perform();
         return this;
     }
 
-    public FolderAbstractPage createNewFolder() {
+    public FolderPage createNewFolder() {
         actions.click(createNewFolderButton).build().perform();
         return this;
     }
 
-    public FolderAbstractPage openSentToMySelf() {
+    public FolderPage openSentToMySelf() {
         actions.click(sentToMySelf).build().perform();
         return this;
     }
 
-    public FolderAbstractPage dragLetterToNewFolder() {
+    public FolderPage dragLetterToNewFolder() {
         int x = 52;
         int y = 330;
         waitForElementPresence(letter);
@@ -68,7 +68,7 @@ public class FolderAbstractPage extends AbstractPage {
         return this;
     }
 
-    public FolderAbstractPage deleteFolder() {
+    public FolderPage deleteFolder() {
         waitForElementPresence(createdFolder);
         actions.contextClick(createdFolder).perform();
         waitForElementPresence(deleteAtContext);

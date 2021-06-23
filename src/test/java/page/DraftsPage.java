@@ -4,17 +4,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class DraftsAbstractPage extends AbstractPage {
+public class DraftsPage extends Page {
     @FindBy(xpath = "//a[@href=\"/drafts/\"]")
     WebElement drafts;
     @FindBy(xpath = "//span[@title=\"selenium.tester@mail.ru\"][1]")
     WebElement lastSaved;
 
-    public DraftsAbstractPage(WebDriver driver) {
+    public DraftsPage(WebDriver driver) {
         super(driver);
     }
 
-    public DraftsAbstractPage openDrafts() {
+    public DraftsPage openDrafts() {
         drafts.click();
         return this;
     }

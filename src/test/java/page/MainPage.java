@@ -5,20 +5,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-public class MainAbstractPage extends AbstractPage {
+public class MainPage extends Page {
     @FindBy(xpath = "//a[@href=\"/compose/\"]")
     WebElement composeLetter;
 
     @FindBy(xpath = "//input[@tabindex=\"100\"]")
     WebElement addresseeInputXpath;
 
-    public MainAbstractPage(WebDriver driver) {
+    public MainPage(WebDriver driver) {
         super(driver);
     }
 
     Actions actions = new Actions(getDriver());
 
-    public MainAbstractPage clickToComposeLetter() {
+    public MainPage clickToComposeLetter() {
         waitForElementPresence(composeLetter);
         actions.click(composeLetter).build().perform();
         return this;

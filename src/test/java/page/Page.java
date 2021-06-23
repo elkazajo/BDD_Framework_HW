@@ -7,12 +7,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
-public abstract class AbstractPage {
+public abstract class Page {
     private final WebDriver driver;
     private static final long TIMEOUT_IN_SECONDS = 10;
     private static final long MILLIS = 500;
 
-    public AbstractPage(WebDriver driver) {
+    public Page(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(this.driver, this);
     }

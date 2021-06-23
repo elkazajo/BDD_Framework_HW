@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class LetterAbstractPage extends AbstractPage {
+public class LetterPage extends Page {
     @FindBy(xpath =  "//input[@tabindex=\"100\"]")
     WebElement addresseeInput;
     @FindBy(xpath = "//input[@tabindex=\"400\"]")
@@ -16,32 +16,32 @@ public class LetterAbstractPage extends AbstractPage {
     @FindBy(xpath = "//button[@tabindex=\"700\"]")
     WebElement closeLetterButton;
 
-    public LetterAbstractPage(WebDriver driver) {
+    public LetterPage(WebDriver driver) {
         super(driver);
     }
 
-    public LetterAbstractPage enterAddressee(String addressee) {
+    public LetterPage enterAddressee(String addressee) {
         waitForElementPresence(addresseeInput);
         addresseeInput.sendKeys(addressee);
         return this;
     }
 
-    public LetterAbstractPage enterSubject(String letterSubject) {
+    public LetterPage enterSubject(String letterSubject) {
         subject.sendKeys(letterSubject);
         return this;
     }
 
-    public LetterAbstractPage enterBodyText(String mailText) {
+    public LetterPage enterBodyText(String mailText) {
         bodyText.sendKeys(mailText);
         return this;
     }
 
-    public LetterAbstractPage saveToDrafts() {
+    public LetterPage saveToDrafts() {
         saveToDraftsButton.click();
         return this;
     }
 
-    public LetterAbstractPage closeLetterPage() {
+    public LetterPage closeLetterPage() {
         closeLetterButton.click();
         return this;
     }
