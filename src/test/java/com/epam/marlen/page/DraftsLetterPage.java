@@ -1,4 +1,4 @@
-package page;
+package com.epam.marlen.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

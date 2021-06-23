@@ -17,7 +17,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.14.3</version>
-            <scope>test</scope>
+            <scope>com.epam.marlen.test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>

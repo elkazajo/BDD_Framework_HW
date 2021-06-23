@@ -1,4 +1,4 @@
-package business_object;
+package com.epam.marlen.business_object;
 
 public class Mail {
 

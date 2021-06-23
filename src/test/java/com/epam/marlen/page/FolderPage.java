@@ -1,4 +1,4 @@
-package page;
+package com.epam.marlen.page;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,10 +9,10 @@ public class FolderPage extends Page {
     @FindBy(xpath = "//div[@class=\"new-folder-btn__button-wrapper\"]")
     WebElement newFolderCreator;
 
-    @FindBy(xpath = "//input[@data-test-id=\"name\"]")
+    @FindBy(xpath = "//input[@data-com.epam.marlen.test-id=\"name\"]")
     WebElement newFolderNamingForm;
 
-    @FindBy(xpath = "//button[@data-test-id=\"submit\"]")
+    @FindBy(xpath = "//button[@data-com.epam.marlen.test-id=\"submit\"]")
     WebElement createNewFolderButton;
 
     @FindBy(xpath = "//div[@class=\"nav__folder-name__txt\" and text()=\"Test Folder\"]")

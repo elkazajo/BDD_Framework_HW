@@ -1,14 +1,14 @@
-package test;
+package com.epam.marlen.test;
 
-import business_object.Mail;
-import business_object.User;
+import com.epam.marlen.business_object.Mail;
+import com.epam.marlen.business_object.User;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import page.*;
-import utils.WebDriverCreator;
+import com.epam.marlen.page.*;
+import com.epam.marlen.utils.WebDriverCreator;
 
 public class TestClass {
 

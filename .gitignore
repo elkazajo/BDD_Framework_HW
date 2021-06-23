@@ -3,4 +3,4 @@
 *.iml
 /.idea
 /target
-/test-output
+/com.epam.marlen.test-output
